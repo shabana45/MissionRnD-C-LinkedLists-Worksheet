@@ -17,7 +17,35 @@ struct node {
 	int num;
 	struct node *next;
 };
-
+void swap(struct node *p1, struct node*p2);
 struct node * sortLinkedList(struct node *head) {
-	return NULL;
+	if (head == NULL)
+		return NULL;
+	if (head->next == NULL)
+		return head;
+	struct node* first = head;
+	struct node* second;
+	struct node* min;
+
+	while (first->next)
+	{
+		min = first;
+		second = first->next;
+        while (second)
+		{
+			if (min->num > second->num)
+				min = second;
+			second = second->next;
+		}
+		swap(first, min);
+		first = first->next;
+	}
+	return head;
+}
+void swap(struct node *p1, struct node*p2)
+{
+	int temp;
+	temp = p1->num;
+	p1->num = p2->num;
+	p2->num = temp;
 }
